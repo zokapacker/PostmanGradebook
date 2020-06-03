@@ -1,0 +1,1058 @@
+{
+	"info": {
+		"_postman_id": "83546e57-d989-40a2-8e26-b30ceef553ed",
+		"name": "Zavrsni ispit Gradebook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "987a695c-4a15-4381-ab48-c00605870f0e",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"user_id\", jsonData.user.id);",
+							"console.log(\"user_id\");",
+							"",
+							"pm.environment.set(\"tokeng\", jsonData.token);",
+							"console.log(\"tokeng\");",
+							"",
+							"var responseTime = pm.environment.get(\"response_time\");",
+							"pm.test(\"Response time is less than \" + responseTime + \" ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(Number(responseTime));",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"{{emailg}}\",\n\t\"password\": \"{{passwordg}}\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}login/",
+					"host": [
+						"{{url}}login"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HOME PAGE PAGINATION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3fcbe233-db40-4a3b-bb32-b35fc8844f5f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"tests[\"pagination length is \" + jsonData[\"data\"].length] = jsonData[\"data\"].length === 10;",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"title\", \"professor_id\", \"created_at\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}diaries",
+					"host": [
+						"{{url}}diaries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HOME PAGE PAGINATION NEXT 10",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c915e483-cf54-4ac3-af47-c4c426b2606e",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"tests[\"pagination length is \" + jsonData[\"data\"].length] = jsonData[\"data\"].length === 10;",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"title\", \"professor_id\", \"created_at\");",
+							"}); // pitati da li treba ovaj test?"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}search?search_term=&page=2",
+					"host": [
+						"{{url}}search"
+					],
+					"query": [
+						{
+							"key": "search_term",
+							"value": ""
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FILTER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "367fb2c6-c4e8-4dba-800b-fbd0662ff5c3",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"pm.test(\"Rezultat ukucavanja - dnevnik\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"dnevnik\");",
+							"});",
+							"tests[\"pagination length is \" + jsonData[\"data\"].length] = jsonData[\"data\"].length === 10;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}search?search_term=dnevnik&page=1",
+					"host": [
+						"{{url}}search"
+					],
+					"query": [
+						{
+							"key": "search_term",
+							"value": "dnevnik"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SINGLE PROFESSORS PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50d6c05a-dbbe-4058-9d1f-8ba3a5823a9d",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"pm.test(\"Stranica ima ime, prezime, sliku, naziv dnevnika, broj studenata\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"firstName\", \"lastName\", \"url\", \"title\", \"students\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}professors/{{profesor_id}}",
+					"host": [
+						"{{url}}professors"
+					],
+					"path": [
+						"{{profesor_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEW PROFESSOR PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4aa5a592-59cc-44f3-a1fb-879d7d50e6bf",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\":[\"https://www.srbijadanas.com/sites/default/files/styles/full_article_image/public/a/t/2019/01/14/jaje.jpg\"],\"firstName\":\"{{profesor_firstName}}\",\"lastName\":\"{{profesor_lastName}}\",\"diary_id\":\"\"}"
+				},
+				"url": {
+					"raw": "{{url}}professors",
+					"host": [
+						"{{url}}professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALL PROFESSORS PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8fb59af7-eba9-41e3-8d5d-ba2aa9110f1b",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"profesor_id\", jsonData[jsonData.length-1].user.professor.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});pm.test(\"Response time is less than 1500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"firstName\", \"lastName\", \"title\", \"url\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}professors",
+					"host": [
+						"{{url}}professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PROFESSORS PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3944f21a-b4e8-46a9-85f6-f2ef7659abce",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"//var LastProfesor = jsonData[jsonData.length-1].id;",
+							"//console.log(LastProfesor);",
+							"var kreiraniProfesor = pm.environment.get(\"profesor_id\");",
+							"console.log(kreiraniProfesor);",
+							"var stvarniProfesor = jsonData[jsonData.length-1].id;",
+							"console.log(stvarniProfesor)",
+							"//var idNumberKreiranogProfesora = Number(kreiraniProfesor);",
+							"//console.log(idNumberKreiranogProfesora);",
+							"pm.environment.set(\"profesor_firstName\", jsonData[jsonData.length-1].user.firstName);",
+							"var kreiranoIme = pm.environment.get(\"profesor_firstName\"); ",
+							"console.log(kreiranoIme);",
+							"var stvarnoIme = jsonData[jsonData.length-1].user.firstName;",
+							"console.log(stvarnoIme)",
+							"//var stringKreiranogImena = String(kreiranoIme);",
+							"//console.log(stringKreiranogImena);",
+							"pm.environment.set(\"profesor_lastName\", jsonData[jsonData.length-1].user.lastName);",
+							"var kreiranoPrezime = pm.environment.get(\"profesor_lastName\"); ",
+							"console.log(kreiranoPrezime);",
+							"var stvarnoPrezime = jsonData[jsonData.length-1].user.lastName;",
+							"console.log(stvarnoPrezime)",
+							"//var stringKreiranogPrezimena = String(kreiranoPrezime);",
+							"//console.log(stringKreiranogPrezimena);",
+							"tests[\"Ovo je pravi ID profesora \" + jsonData[jsonData.length-1].user.professor.id] = stvarniProfesor === kreiraniProfesor;",
+							"",
+							"tests[\"Ovo je pravi IME profesora \" + jsonData[jsonData.length-1].user.firstName] = stvarnoIme === kreiranoIme;",
+							"",
+							"tests[\"Ovo je pravi PREZIME profesora \" + jsonData[jsonData.length-1].user.lastName] = stvarnoPrezime === kreiranoPrezime;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}professors",
+					"host": [
+						"{{url}}professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEW GRADEBOOK PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ca7ff03-1346-4ccb-9dd1-b3329d807ef3",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"pm.environment.set(\"dnevnik_id\", jsonData.id);",
+							"",
+							"pm.environment.set(\"titleDnevnika\", jsonData.title);",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\": \"{{titleDnevnika}}\", \"professor_id\": \"{{profesor_id}}\"}\n\n"
+				},
+				"url": {
+					"raw": "{{url}}diaries",
+					"host": [
+						"{{url}}diaries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GRADEBOOK PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e25a63c8-05d2-4ec2-a4e4-bcd3f4e4ac0c",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.environment.set(\"last_page\", jsonData.last_page);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}search?search_term=&page={{last_page}}",
+					"host": [
+						"{{url}}search"
+					],
+					"query": [
+						{
+							"key": "search_term",
+							"value": ""
+						},
+						{
+							"key": "page",
+							"value": "{{last_page}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GRADEBOOK PAGE 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aac576e7-d0ff-4a40-9a0d-56f9fac61ccc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var stvarniDnevnik = jsonData.data[jsonData.data.length-1].id;",
+							"console.log(stvarniDnevnik);",
+							"var idKreiranogDnevnika = pm.environment.get(\"dnevnik_id\");",
+							"console.log(idKreiranogDnevnika);",
+							"/*var idNumberKreiranogDnevnika = Number(idKreiranogDnevnika);",
+							"console.log(idKreiranogDnevnika);*/",
+							"",
+							"var stvarniTitle = jsonData.data[jsonData.data.length-1].title;",
+							"console.log(stvarniTitle);",
+							"var kreiraniTitle = pm.environment.get(\"titleDnevnika\"); ",
+							"console.log(kreiraniTitle);",
+							"",
+							"tests[\"Ovo je pravi TITLE ( \" + jsonData.data[jsonData.data.length-1].id + \" )\"] = stvarniTitle === kreiraniTitle;",
+							"tests[\"Ovo je pravi ID dnevnika\"] = stvarniDnevnik === idKreiranogDnevnika;",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}search?search_term=&page={{last_page}}",
+					"host": [
+						"{{url}}search"
+					],
+					"query": [
+						{
+							"key": "search_term",
+							"value": ""
+						},
+						{
+							"key": "page",
+							"value": "{{last_page}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MY GRADEBOOK PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b0b0f84-abd8-4af6-b9d1-6d7b5ef2f9be",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"pm.test(\"Stranica sadrzi ime dnevnika, ime i prezime profesora, listu studenata\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"firstName\", \"lastName\", \"title\", \"students\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}diaries/my-diary/{{user_id}}",
+					"host": [
+						"{{url}}diaries"
+					],
+					"path": [
+						"my-diary",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEW STUDENTS PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ecd19c4-50fd-4a1f-8d7b-8efb6ace7668",
+						"exec": [
+							"jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"/*pm.environment.set(\"dnevnik_id\", jsonData.id);",
+							"",
+							"pm.environment.set(\"titleDnevnika\", jsonData.title);*/",
+							"",
+							"",
+							"/*pm.environment.set(\"randomTitle\", jsonData.students.firstName); ",
+							"randomTitle = () => {",
+							"    return (",
+							"        Math.random()",
+							"        .toString(36)",
+							"        .substr(2, 7)",
+							"    );",
+							"}*/",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\":\"{{student_ime}}\",\"lastName\":\"{{student_prezime}}\",\"url\":[\"https://www.slikesrbije.rs/konkurs-photos/1543670944Konkurs.jpg\"]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}diaries/{{dnevnik_id}}/students",
+					"host": [
+						"{{url}}diaries"
+					],
+					"path": [
+						"{{dnevnik_id}}",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VIEW GRADEBOOK PAGE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "da0ffdb5-2b2e-4601-9386-71df89a31cbc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.environment.set(\"student_id\", jsonData.students[jsonData.students.length-1].id);",
+							"pm.environment.set(\"student_ime\", jsonData.students[jsonData.students.length-1].firstName);",
+							"pm.environment.set(\"student_prezime\", jsonData.students[jsonData.students.length-1].lastName);",
+							"",
+							"var stvarniStudent = jsonData.students[jsonData.students.length-1].id;",
+							"console.log(stvarniStudent);",
+							"var idKreiranogStudenta = pm.environment.get(\"student_id\");",
+							"console.log(idKreiranogStudenta);",
+							"/*var idNumberKreiranogDnevnika = Number(idKreiranogDnevnika);",
+							"console.log(idKreiranogDnevnika);*/",
+							"",
+							"var stvarnoStudentIme = jsonData.students[jsonData.students.length-1].firstName;",
+							"console.log(stvarnoStudentIme);",
+							"var kreiranoStudentIme = pm.environment.get(\"student_ime\"); ",
+							"console.log(kreiranoStudentIme);",
+							"",
+							"var stvarnoStudentPrezime = jsonData.students[jsonData.students.length-1].lastName;",
+							"console.log(stvarnoStudentPrezime);",
+							"var kreiranoStudentPrezime = pm.environment.get(\"student_prezime\"); ",
+							"console.log(kreiranoStudentPrezime);",
+							"",
+							"tests[\"Ovo je pravo PREZIME studenta \" + jsonData.students[jsonData.students.length-1].lastName] = stvarnoStudentIme === kreiranoStudentIme;",
+							"tests[\"Ovo je pravo IME studenta \" + jsonData.students[jsonData.students.length-1].firstName] = stvarnoStudentIme === kreiranoStudentIme;",
+							"tests[\"Ovo je pravi ID studenta\"] = stvarniStudent === idKreiranogStudenta;",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}diaries/{{dnevnik_id}}",
+					"host": [
+						"{{url}}diaries"
+					],
+					"path": [
+						"{{dnevnik_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEW COMMENTS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b7140e3-1159-4e1f-ae8f-4967a9c58e38",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"pm.environment.set(\"comment_id\", jsonData.id);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"text\":\"blabla\",\"user_id\":78}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}diaries/{{dnevnik_id}}/comments",
+					"host": [
+						"{{url}}diaries"
+					],
+					"path": [
+						"{{dnevnik_id}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENTS LIST FEATURE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23d5e33a-ae11-458d-a0ef-4e8057bdf829",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"blabla\");",
+							"});",
+							"",
+							"var poslednjiKomentarId = jsonData.comments[jsonData.comments.length-1].id;",
+							"console.log(poslednjiKomentarId);",
+							"var kreiraniKomentarId = pm.environment.get(\"comment_id\");",
+							"console.log(kreiraniKomentarId);",
+							"tests[\"Ovo je pravi ID komentara \" + jsonData.comments[jsonData.comments.length-1].id] = poslednjiKomentarId === kreiraniKomentarId;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}diaries/{{dnevnik_id}}",
+					"host": [
+						"{{url}}diaries"
+					],
+					"path": [
+						"{{dnevnik_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE COMMENT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "944186b6-f8dc-4cb6-ad45-c9a056d4271a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}comments/{{comment_id}}",
+					"host": [
+						"{{url}}comments"
+					],
+					"path": [
+						"{{comment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT GRADEBOOK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4378b993-253f-4698-bcbf-5f5fa504e1b5",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//var editovanTitle = pm.variables.get(\"editovanTitle\");",
+							"pm.test(\"Title is ok\", function () {",
+							"   pm.expect(jsonData.title).to.include(\"GGGGG\");",
+							" });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 67,\r\n  \"title\": \"GGGGG\",\r\n  \"professor_id\": 78,\r\n  \"created_at\": \"2019-12-01 12:31:11\",\r\n  \"updated_at\": \"2019-12-01 12:31:11\",\r\n  \"professor\": {\r\n    \"id\": 78,\r\n    \"user_id\": 78,\r\n    \"url\": null,\r\n    \"created_at\": \"2019-12-01 11:10:28\",\r\n    \"updated_at\": \"2019-12-01 11:10:28\",\r\n    \"user\": {\r\n      \"id\": 78,\r\n      \"firstName\": \"Zoran\",\r\n      \"lastName\": \"Todorcevic\",\r\n      \"email\": null,\r\n      \"email_verified_at\": null,\r\n      \"termsAndConditions\": null,\r\n      \"created_at\": \"2019-12-01 11:10:28\",\r\n      \"updated_at\": \"2019-12-01 11:10:28\"\r\n    }\r\n  },\r\n  \"students\": [],\r\n  \"comments\": [\r\n    {\r\n      \"id\": 1,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 12:57:42\",\r\n      \"updated_at\": \"2019-12-01 12:57:42\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 2,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 12:59:53\",\r\n      \"updated_at\": \"2019-12-01 12:59:53\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 3,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:01:16\",\r\n      \"updated_at\": \"2019-12-01 13:01:16\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:01:31\",\r\n      \"updated_at\": \"2019-12-01 13:01:31\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 5,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:10:16\",\r\n      \"updated_at\": \"2019-12-01 13:10:16\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 6,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:15:55\",\r\n      \"updated_at\": \"2019-12-01 13:15:55\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 7,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:16:33\",\r\n      \"updated_at\": \"2019-12-01 13:16:33\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 8,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:24:24\",\r\n      \"updated_at\": \"2019-12-01 13:24:24\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 9,\r\n      \"text\": \"tttttt\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:27:08\",\r\n      \"updated_at\": \"2019-12-01 13:27:08\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 11,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:31:34\",\r\n      \"updated_at\": \"2019-12-01 13:31:34\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": 13,\r\n      \"text\": \"blabla\",\r\n      \"diary_id\": 67,\r\n      \"user_id\": 7,\r\n      \"created_at\": \"2019-12-01 13:33:24\",\r\n      \"updated_at\": \"2019-12-01 13:33:24\",\r\n      \"user\": {\r\n        \"id\": 7,\r\n        \"firstName\": \"Zoran\",\r\n        \"lastName\": \"Todorcevic\",\r\n        \"email\": \"zokapacker@gmail.com\",\r\n        \"email_verified_at\": \"2019-11-30 19:38:18\",\r\n        \"termsAndConditions\": null,\r\n        \"created_at\": \"2019-11-30 19:38:18\",\r\n        \"updated_at\": \"2019-11-30 19:38:18\"\r\n      }\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}diaries/{{dnevnik_id}}",
+					"host": [
+						"{{url}}diaries"
+					],
+					"path": [
+						"{{dnevnik_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE GRADEBOOK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e98328b-b18e-4df9-a340-d4a9fbee4658",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{tokeng}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}diaries/{{dnevnik_id}}",
+					"host": [
+						"{{url}}diaries"
+					],
+					"path": [
+						"{{dnevnik_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

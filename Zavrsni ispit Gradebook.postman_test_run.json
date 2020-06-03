@@ -1,0 +1,1325 @@
+{
+	"id": "0a12a133-650d-45bd-b432-6e850522ba49",
+	"name": "Zavrsni ispit Gradebook",
+	"allTests": [],
+	"timestamp": "2019-12-09T17:57:30.102Z",
+	"collection_id": "83546e57-d989-40a2-8e26-b30ceef553ed",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "2dcf1b89-2fa7-4add-be46-165a5d9e25e1",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "83546e57-d989-40a2-8e26-b30ceef553ed",
+		"name": "Zavrsni ispit Gradebook",
+		"order": [
+			"f9fa2f53-5cf1-4c81-9d0f-94aa1e463379",
+			"bed6196e-ce5d-4eff-afd2-02bf9c514d1e",
+			"1a0f6d5e-2550-4e0a-9acd-9f55d192719e",
+			"ebef459f-3df8-4e74-9117-b155e0d8046a",
+			"02a14997-0249-428e-9eb5-14ec192f35bb",
+			"b15016ce-cf74-4d84-8417-3b00073caa28",
+			"d7ff2481-43d6-47ba-a73c-d287165dc1c2",
+			"9f7f6135-66ed-46c4-8cff-da768e20c476",
+			"67c08921-0aa2-4d01-aa2d-d4fa155ec399",
+			"2c19900a-d5b6-40dd-8c3f-09665fd0aca9",
+			"0b0af75e-e8fc-43b0-b10c-34c9af79da27",
+			"11ac8432-40e7-439a-ae8c-be07300a1e6c",
+			"e4471917-2615-46d1-bf6e-306b0b0534b1",
+			"07878701-0c76-4746-a581-b3820a94a5f6",
+			"765b084e-b1b6-4006-b877-4da7c7a7937c",
+			"483840bd-3e5c-41ad-94f4-3cc1892375b5",
+			"f34ef848-669c-46f0-8141-4c2a14a7e88e",
+			"ea2603af-9f72-46f6-8032-ed2897f3f3d6",
+			"8353ff42-cec6-497a-9447-3376697eaf12"
+		],
+		"folders_order": [],
+		"isFavorite": true
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [
+		{
+			"key": "url",
+			"value": "https://gallery-api.vivifyideas.com/api",
+			"enabled": false
+		},
+		{
+			"key": "url",
+			"value": "https://gradebook.vivifyideas.com/api/#/",
+			"enabled": true
+		}
+	],
+	"results": [
+		{
+			"name": "LOGIN",
+			"id": "f9fa2f53-5cf1-4c81-9d0f-94aa1e463379",
+			"url": "http://www.gradebooktest.com/api/login/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response time is less than 2000 ms": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Response time is less than 2000 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"227"
+			],
+			"allTests": [
+				{
+					"Response time is less than 2000 ms": true,
+					"Status code is 200": true
+				}
+			],
+			"time": "227",
+			"totalRequestTime": "227",
+			"iterationResults": {}
+		},
+		{
+			"name": "HOME PAGE PAGINATION",
+			"id": "bed6196e-ce5d-4eff-afd2-02bf9c514d1e",
+			"url": "http://www.gradebooktest.com/api/diaries",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response time is less than 500ms": true,
+				"Body matches string": true,
+				"pagination length is 10": true
+			},
+			"testPassFailCounts": {
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"pagination length is 10": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"86"
+			],
+			"allTests": [
+				{
+					"Response time is less than 500ms": true,
+					"Body matches string": true,
+					"pagination length is 10": true
+				}
+			],
+			"time": "86",
+			"totalRequestTime": "86",
+			"iterationResults": {}
+		},
+		{
+			"name": "HOME PAGE PAGINATION NEXT 10",
+			"id": "1a0f6d5e-2550-4e0a-9acd-9f55d192719e",
+			"url": "http://www.gradebooktest.com/api/search?search_term=&page=2",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response time is less than 500ms": true,
+				"Body matches string": true,
+				"pagination length is 10": true
+			},
+			"testPassFailCounts": {
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"pagination length is 10": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"85"
+			],
+			"allTests": [
+				{
+					"Response time is less than 500ms": true,
+					"Body matches string": true,
+					"pagination length is 10": true
+				}
+			],
+			"time": "85",
+			"totalRequestTime": "85",
+			"iterationResults": {}
+		},
+		{
+			"name": "FILTER",
+			"id": "ebef459f-3df8-4e74-9117-b155e0d8046a",
+			"url": "http://www.gradebooktest.com/api/search?search_term=dnevnik&page=1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 200ms": true,
+				"Rezultat ukucavanja - dnevnik": true,
+				"pagination length is 10": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Rezultat ukucavanja - dnevnik": {
+					"pass": 1,
+					"fail": 0
+				},
+				"pagination length is 10": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"79"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 200ms": true,
+					"Rezultat ukucavanja - dnevnik": true,
+					"pagination length is 10": true
+				}
+			],
+			"time": "79",
+			"totalRequestTime": "79",
+			"iterationResults": {}
+		},
+		{
+			"name": "SINGLE PROFESSORS PAGE",
+			"id": "02a14997-0249-428e-9eb5-14ec192f35bb",
+			"url": "http://www.gradebooktest.com/api/professors/1103",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 500ms": true,
+				"Stranica ima ime, prezime, sliku, naziv dnevnika, broj studenata": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Stranica ima ime, prezime, sliku, naziv dnevnika, broj studenata": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"79"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 500ms": true,
+					"Stranica ima ime, prezime, sliku, naziv dnevnika, broj studenata": true
+				}
+			],
+			"time": "79",
+			"totalRequestTime": "79",
+			"iterationResults": {}
+		},
+		{
+			"name": "NEW PROFESSOR PAGE",
+			"id": "b15016ce-cf74-4d84-8417-3b00073caa28",
+			"url": "http://www.gradebooktest.com/api/professors",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"84"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "84",
+			"totalRequestTime": "84",
+			"iterationResults": {}
+		},
+		{
+			"name": "ALL PROFESSORS PAGE",
+			"id": "d7ff2481-43d6-47ba-a73c-d287165dc1c2",
+			"url": "http://www.gradebooktest.com/api/professors",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 1500ms": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"1195"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 1500ms": true,
+					"Body matches string": true
+				}
+			],
+			"time": "1195",
+			"totalRequestTime": "1195",
+			"iterationResults": {}
+		},
+		{
+			"name": "PROFESSORS PAGE",
+			"id": "9f7f6135-66ed-46c4-8cff-da768e20c476",
+			"url": "http://www.gradebooktest.com/api/professors",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Ovo je pravi ID profesora 1109": true,
+				"Ovo je pravi IME profesora profesor": true,
+				"Ovo je pravi PREZIME profesora profesor": true
+			},
+			"testPassFailCounts": {
+				"Ovo je pravi ID profesora 1109": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi IME profesora profesor": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi PREZIME profesora profesor": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"1205"
+			],
+			"allTests": [
+				{
+					"Ovo je pravi ID profesora 1109": true,
+					"Ovo je pravi IME profesora profesor": true,
+					"Ovo je pravi PREZIME profesora profesor": true
+				}
+			],
+			"time": "1205",
+			"totalRequestTime": "1205",
+			"iterationResults": {}
+		},
+		{
+			"name": "NEW GRADEBOOK PAGE",
+			"id": "67c08921-0aa2-4d01-aa2d-d4fa155ec399",
+			"url": "http://www.gradebooktest.com/api/diaries",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": {
+					"name": "Created",
+					"detail": "The request has been fulfilled and resulted in a new resource being created."
+				}
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"81"
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			],
+			"time": "81",
+			"totalRequestTime": "81",
+			"iterationResults": {}
+		},
+		{
+			"name": "GRADEBOOK PAGE",
+			"id": "2c19900a-d5b6-40dd-8c3f-09665fd0aca9",
+			"url": "http://www.gradebooktest.com/api/search?search_term=&page=69",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				"97"
+			],
+			"allTests": [
+				{}
+			],
+			"time": "97",
+			"totalRequestTime": "97",
+			"iterationResults": {}
+		},
+		{
+			"name": "GRADEBOOK PAGE 2",
+			"id": "0b0af75e-e8fc-43b0-b10c-34c9af79da27",
+			"url": "http://www.gradebooktest.com/api/search?search_term=&page=69",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Ovo je pravi TITLE ( 1097 )": true,
+				"Ovo je pravi ID dnevnika": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi TITLE ( 1097 )": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi ID dnevnika": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"83"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Ovo je pravi TITLE ( 1097 )": true,
+					"Ovo je pravi ID dnevnika": true
+				}
+			],
+			"time": "83",
+			"totalRequestTime": "83",
+			"iterationResults": {}
+		},
+		{
+			"name": "MY GRADEBOOK PAGE",
+			"id": "11ac8432-40e7-439a-ae8c-be07300a1e6c",
+			"url": "http://www.gradebooktest.com/api/diaries/my-diary/7",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 500ms": true,
+				"Stranica sadrzi ime dnevnika, ime i prezime profesora, listu studenata": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Stranica sadrzi ime dnevnika, ime i prezime profesora, listu studenata": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"86"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 500ms": true,
+					"Stranica sadrzi ime dnevnika, ime i prezime profesora, listu studenata": true
+				}
+			],
+			"time": "86",
+			"totalRequestTime": "86",
+			"iterationResults": {}
+		},
+		{
+			"name": "NEW STUDENTS PAGE",
+			"id": "e4471917-2615-46d1-bf6e-306b0b0534b1",
+			"url": "http://www.gradebooktest.com/api/diaries/1097/students",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"196"
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			],
+			"time": "196",
+			"totalRequestTime": "196",
+			"iterationResults": {}
+		},
+		{
+			"name": "VIEW GRADEBOOK PAGE",
+			"id": "07878701-0c76-4746-a581-b3820a94a5f6",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Ovo je pravo PREZIME studenta tttt": true,
+				"Ovo je pravo IME studenta rtrrr": true,
+				"Ovo je pravi ID studenta": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravo PREZIME studenta tttt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravo IME studenta rtrrr": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi ID studenta": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"92"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Ovo je pravo PREZIME studenta tttt": true,
+					"Ovo je pravo IME studenta rtrrr": true,
+					"Ovo je pravi ID studenta": true
+				}
+			],
+			"time": "92",
+			"totalRequestTime": "92",
+			"iterationResults": {}
+		},
+		{
+			"name": "NEW COMMENTS",
+			"id": "765b084e-b1b6-4006-b877-4da7c7a7937c",
+			"url": "http://www.gradebooktest.com/api/diaries/1097/comments",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": {
+					"name": "Created",
+					"detail": "The request has been fulfilled and resulted in a new resource being created."
+				}
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"164"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "164",
+			"totalRequestTime": "164",
+			"iterationResults": {}
+		},
+		{
+			"name": "COMMENTS LIST FEATURE",
+			"id": "483840bd-3e5c-41ad-94f4-3cc1892375b5",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 300ms": true,
+				"Body matches string": true,
+				"Ovo je pravi ID komentara 627": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 300ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi ID komentara 627": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"96"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 300ms": true,
+					"Body matches string": true,
+					"Ovo je pravi ID komentara 627": true
+				}
+			],
+			"time": "96",
+			"totalRequestTime": "96",
+			"iterationResults": {}
+		},
+		{
+			"name": "DELETE COMMENT",
+			"id": "f34ef848-669c-46f0-8141-4c2a14a7e88e",
+			"url": "http://www.gradebooktest.com/api/comments/627",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"76"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "76",
+			"totalRequestTime": "76",
+			"iterationResults": {}
+		},
+		{
+			"name": "EDIT GRADEBOOK",
+			"id": "ea2603af-9f72-46f6-8032-ed2897f3f3d6",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Title is ok": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Title is ok": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"90"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Title is ok": true
+				}
+			],
+			"time": "90",
+			"totalRequestTime": "90",
+			"iterationResults": {}
+		},
+		{
+			"name": "DELETE GRADEBOOK",
+			"id": "8353ff42-cec6-497a-9447-3376697eaf12",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"132"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "132",
+			"totalRequestTime": "132",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 43,
+	"totalFail": 0,
+	"totalTime": 4233,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "LOGIN",
+			"id": "f9fa2f53-5cf1-4c81-9d0f-94aa1e463379",
+			"url": "http://www.gradebooktest.com/api/login/",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response time is less than 2000 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "HOME PAGE PAGINATION",
+			"id": "bed6196e-ce5d-4eff-afd2-02bf9c514d1e",
+			"url": "http://www.gradebooktest.com/api/diaries",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"pagination length is 10": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "HOME PAGE PAGINATION NEXT 10",
+			"id": "1a0f6d5e-2550-4e0a-9acd-9f55d192719e",
+			"url": "http://www.gradebooktest.com/api/search?search_term=&page=2",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"pagination length is 10": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "FILTER",
+			"id": "ebef459f-3df8-4e74-9117-b155e0d8046a",
+			"url": "http://www.gradebooktest.com/api/search?search_term=dnevnik&page=1",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Rezultat ukucavanja - dnevnik": {
+					"pass": 1,
+					"fail": 0
+				},
+				"pagination length is 10": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "SINGLE PROFESSORS PAGE",
+			"id": "02a14997-0249-428e-9eb5-14ec192f35bb",
+			"url": "http://www.gradebooktest.com/api/professors/1103",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Stranica ima ime, prezime, sliku, naziv dnevnika, broj studenata": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "NEW PROFESSOR PAGE",
+			"id": "b15016ce-cf74-4d84-8417-3b00073caa28",
+			"url": "http://www.gradebooktest.com/api/professors",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "ALL PROFESSORS PAGE",
+			"id": "d7ff2481-43d6-47ba-a73c-d287165dc1c2",
+			"url": "http://www.gradebooktest.com/api/professors",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "PROFESSORS PAGE",
+			"id": "9f7f6135-66ed-46c4-8cff-da768e20c476",
+			"url": "http://www.gradebooktest.com/api/professors",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Ovo je pravi ID profesora 1109": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi IME profesora profesor": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi PREZIME profesora profesor": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "NEW GRADEBOOK PAGE",
+			"id": "67c08921-0aa2-4d01-aa2d-d4fa155ec399",
+			"url": "http://www.gradebooktest.com/api/diaries",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": {
+					"name": "Created",
+					"detail": "The request has been fulfilled and resulted in a new resource being created."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "GRADEBOOK PAGE",
+			"id": "2c19900a-d5b6-40dd-8c3f-09665fd0aca9",
+			"url": "http://www.gradebooktest.com/api/search?search_term=&page=69",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {}
+		},
+		{
+			"name": "GRADEBOOK PAGE 2",
+			"id": "0b0af75e-e8fc-43b0-b10c-34c9af79da27",
+			"url": "http://www.gradebooktest.com/api/search?search_term=&page=69",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi TITLE ( 1097 )": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi ID dnevnika": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "MY GRADEBOOK PAGE",
+			"id": "11ac8432-40e7-439a-ae8c-be07300a1e6c",
+			"url": "http://www.gradebooktest.com/api/diaries/my-diary/7",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Stranica sadrzi ime dnevnika, ime i prezime profesora, listu studenata": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "NEW STUDENTS PAGE",
+			"id": "e4471917-2615-46d1-bf6e-306b0b0534b1",
+			"url": "http://www.gradebooktest.com/api/diaries/1097/students",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "VIEW GRADEBOOK PAGE",
+			"id": "07878701-0c76-4746-a581-b3820a94a5f6",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravo PREZIME studenta tttt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravo IME studenta rtrrr": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi ID studenta": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "NEW COMMENTS",
+			"id": "765b084e-b1b6-4006-b877-4da7c7a7937c",
+			"url": "http://www.gradebooktest.com/api/diaries/1097/comments",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": {
+					"name": "Created",
+					"detail": "The request has been fulfilled and resulted in a new resource being created."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "COMMENTS LIST FEATURE",
+			"id": "483840bd-3e5c-41ad-94f4-3cc1892375b5",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 300ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ovo je pravi ID komentara 627": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "DELETE COMMENT",
+			"id": "f34ef848-669c-46f0-8141-4c2a14a7e88e",
+			"url": "http://www.gradebooktest.com/api/comments/627",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "EDIT GRADEBOOK",
+			"id": "ea2603af-9f72-46f6-8032-ed2897f3f3d6",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Title is ok": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "DELETE GRADEBOOK",
+			"id": "8353ff42-cec6-497a-9447-3376697eaf12",
+			"url": "http://www.gradebooktest.com/api/diaries/1097",
+			"time": "2019-12-09T17:57:30.102Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}
